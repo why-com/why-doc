@@ -1,0 +1,1 @@
+(()=>{const e=document.getElementById("root");e.innerHTML="<h1>why-doc 자사몰입니다</h1><p>곧 오픈됩니다!</p>";})();
