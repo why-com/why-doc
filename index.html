@@ -1,102 +1,319 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>왜아팜 자사몰</title>
-  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>왜아팜 - 건강기능식품 전문몰</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Pretendard Variable', sans-serif;
-      background: linear-gradient(135deg, #f9f9f9, #e9f3f0);
+      font-family: 'Pretendard', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .navbar {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      padding: 1rem 4rem;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      background-color: #ffffffcc;
+      backdrop-filter: blur(10px);
+      z-index: 999;
+    }
+
+    .logo img {
+      height: 42px;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-menu ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .nav-menu a:hover {
+      color: #ED72A0;
+    }
+
+    .lang-select {
+      margin-left: auto;
+    }
+
+    .lang-select select {
+      padding: 0.4rem 0.6rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .main-banner {
+      background: url('약국배경.jpg') no-repeat center center / cover;
+      height: 480px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
-      color: #2e2e2e;
-    }
-
-    img {
-      width: 220px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      border-radius: 8px;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 15px;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    .button-container {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 14px 26px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      min-width: 230px;
-      text-align: center;
-    }
-
-    .naver {
-      background: linear-gradient(to right, #00c73c, #00a732);
       color: #fff;
+      position: relative;
     }
 
-    .naver:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(to right, #00a732, #008f2a);
+    .main-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
     }
 
-    .kakao {
-      background: #fee500;
-      color: #3c1e1e;
+    .banner-content {
+      position: relative;
+      z-index: 1;
     }
 
-    .kakao:hover {
-      background: #f0d700;
-      transform: translateY(-2px);
+    .banner-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .banner-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      background-color: #00AEEF;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover {
+      background-color: #0088cc;
+    }
+
+    .best-products {
+      padding: 4rem 2rem;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .best-products h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #00AEEF;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      border-radius: 12px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 1.5rem 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      margin: 0.5rem 0 0.3rem;
+      font-size: 1.2rem;
+    }
+
+    .product-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-secondary {
+      background-color: #ED72A0;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .btn-secondary:hover {
+      background-color: #c4567f;
+    }
+
+    .footer {
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 4rem;
+    }
+
+    .brand-intro {
+      background-color: #fff;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background-color: #ED72A0;
+      color: white;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.7;
     }
   </style>
+  <script>
+    function changeLanguage(select) {
+  const lang = select.value;
+  if (lang === 'EN') {
+    document.querySelectorAll('.nav-menu a')[0].textContent = 'Home';
+    document.querySelectorAll('.nav-menu a')[1].textContent = 'All Products';
+    document.querySelectorAll('.nav-menu a')[2].textContent = 'Best';
+    document.querySelectorAll('.nav-menu a')[3].textContent = 'About Us';
+    document.querySelectorAll('.nav-menu a')[4].textContent = 'Consultation';
+    document.querySelectorAll('.nav-menu a')[5].textContent = 'Reviews';
+    document.querySelectorAll('.nav-menu a')[6].textContent = 'My Page';
+    document.getElementById('banner-title').textContent = 'Health starts with trust';
+    document.getElementById('banner-desc').textContent = 'Whyapharm is led by pharmacists';
+    document.getElementById('brand-desc').innerHTML = '<strong>Whyapharm is a health supplement shop run by pharmacists.</strong><br>We offer verified products, trusted information, and carefully curated selections.';
+    document.getElementById('best-title').textContent = 'Best Products';
+    document.getElementById('highlight-text').textContent = 'Whyapharm selects only what customers truly need, with reliable quality and pharmacist trust.';
+  } else {
+        document.querySelectorAll('.nav-menu a')[0].textContent = '홈';
+        document.querySelectorAll('.nav-menu a')[1].textContent = '전체제품';
+        document.querySelectorAll('.nav-menu a')[2].textContent = '베스트';
+        document.querySelectorAll('.nav-menu a')[3].textContent = '브랜드 소개';
+        document.querySelectorAll('.nav-menu a')[4].textContent = '건강상담소';
+        document.querySelectorAll('.nav-menu a')[5].textContent = '리뷰/후기';
+        document.querySelectorAll('.nav-menu a')[6].textContent = '회원서비스';
+      }
+    }
+  </script>
 </head>
 <body>
-  <img src="logo.jpg" alt="logo.jpg" />
-  <h1>왜아팜 자사몰이 곧 오픈합니다!</h1>
-  <p>
-    믿을 수 있는 건강 제품으로 찾아뵙겠습니다.<br/>
-    <strong>why-doc.com</strong>에서 곧 만나요.
-  </p>
+  <!-- 상단 메뉴바 -->
+  <header class="navbar">
+    <div class="logo">
+  <a href="index.html">
+    <img src="logo.png" alt="왜아팜 로고">
+  </a>
+</div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#">홈</a></li>
+        <li><a href="#">전체제품</a></li>
+        <li><a href="#">베스트</a></li>
+        <li><a href="#">브랜드 소개</a></li>
+        <li><a href="#">건강상담소</a></li>
+        <li><a href="#">리뷰/후기</a></li>
+        <li><a href="#">회원서비스</a></li>
+      </ul>
+      <div class="lang-select">
+        <select onchange="changeLanguage(this)">
+          <option value="KO">KO</option>
+          <option value="EN">EN</option>
+        </select>
+      </div>
+    </nav>
+  </header>
 
-  <div class="button-container">
-    <a class="button naver" href="https://smartstore.naver.com/whydoc" target="_blank">
-      ✅ 네이버 스마트스토어 방문하기
-    </a>
-
-    <a class="button kakao" href="http://pf.kakao.com/_ViJxgG" target="_blank">
-      💬 카카오채널 1:1 문의하기
-    </a>
+  <!-- 메인 배너 -->
+  <section class="main-banner">
+    <div class="banner-content">
+  <img src="logo.png" alt="왜아팜 로고" style="background:#fff;border-radius:10px;padding:10px 20px;margin-bottom:20px;height:60px;">
+  <h1 id="banner-title">왜아팜 자사몰이 곧 오픈합니다!</h1>
+  <p id="banner-desc">믿을 수 있는 건강 제품으로 찾아뵙겠습니다.<br><strong>why-doc.com</strong>에서 곧 만나요.</p>
+  <div style="margin-top:2rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <a href="https://smartstore.naver.com/whydoc" class="btn-primary" style="background-color:#00c73c;">네이버 스마트스토어 방문하기</a>
+    <a href="https://pf.kakao.com/_zAxexj" class="btn-primary" style="background-color:#ffeb00;color:#000;font-weight:600;">카카오채널 1:1 문의하기</a>
   </div>
+</div>
+  </section>
+
+  <!-- 브랜드 소개 섹션 -->
+  <section class="brand-intro">
+  <p id="brand-desc"><strong>왜아팜은 약사가 운영하는 건강기능식품 전문 쇼핑몰입니다.</strong><br>
+  상품 운영, 믿을 수 있는 정보, 그리고 직접 선택한 제품만을 소개합니다.</p>
+</section>
+
+  <!-- 베스트 상품 영역 -->
+  <section id="best" class="best-products">
+    <h2 id="best-title">베스트 제품</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="리브레2.jpg" alt="FreeStyle 리브레2">
+        <h3>FreeStyle 리브레2</h3>
+        <p>최대 14일 사용, 연속 당 측정 시스템</p>
+        <a href="#" class="btn-secondary">자세히 보기</a>
+      </div>
+      <div class="product-card">
+        <img src="바로젠.jpg" alt="바로젠 Fit">
+        <h3>바로젠 Fit</h3>
+        <p>블루투스 연동 개인용 혈당 측정기</p>
+        <a href="#" class="btn-secondary">자세히 보기</a>
+      </div>
+      <div class="product-card">
+        <img src="덱스콤.jpg" alt="Dexcom G7">
+        <h3>Dexcom G7</h3>
+        <p>정확도와 편의성을 모두 잡은 최신형 GCM</p>
+        <a href="#" class="btn-secondary">자세히 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 강조 문구 섹션 -->
+  <section class="highlight-box">
+  <p id="highlight-text">왜아팜은 고객에게 필요한 제품만을 선별하여 제공합니다. 믿을 수 있는 품질과 정확한 정보, 약사의 신뢰를 담았습니다.</p>
+</section>
+
+  <!-- 하단 푸터 -->
+  <footer class="footer">
+    <p>&copy; 2025 왜아팜. All rights reserved.</p>
+  </footer>
 </body>
-</html>
